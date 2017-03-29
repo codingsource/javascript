@@ -112,14 +112,17 @@ console.log(findSolution(24));
 
 
 // Função Crescente
-function printFarmInventory(cows, chickens) {
-    var cowString = String(cows);
-    while (cowString.length < 3)
-        cowString = "0" + cowString;
-    console.log(cowString + " Cows");
-    var chickenString = String(chickens);
-    while (chickenString.length < 3)
-        chickenString = "0" + chickenString;
-    console.log(chickenString + " Chickens");
+function printZeroPaddedWithLabel(number, label) {
+    var numberString = String(number);
+    while (numberString.length < 3)
+        numberString = "0" + numberString;
+    console.log(numberString + " " + label);
 }
-printFarmInventory(7, 11);
+
+function printFarmInventory(cows, chickens, pigs) {
+    printZeroPaddedWithLabel(cows, "Cows");
+    printZeroPaddedWithLabel(chickens, "Chickens");
+    printZeroPaddedWithLabel(pigs, "Pigs");
+}
+
+printFarmInventory(7, 11, 3);
