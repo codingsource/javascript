@@ -46,3 +46,10 @@ var landscape = function () {
     return result;
 }
 console.log(landscape());
+
+
+//Bloco livre
+var something = 1;
+{
+    var something = 2;
+}
