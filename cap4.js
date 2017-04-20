@@ -110,7 +110,6 @@ function findSolution(target) {
 
 console.log(findSolution(24));
 
-
 // Função Crescente
 function zeroPad(number, width) {
     var string = String(number);
@@ -126,3 +125,72 @@ function printFarmInventory(cows, chickens, pigs) {
 }
 
 printFarmInventory(7, 11, 3);
+
+// Create a function value f
+var f = function (a) {
+    console.log(a + 2);
+}
+
+// Declare g to be a function
+function g(a, b) {
+    return a * b * 3.5;
+}
+
+// Exercicio 
+console.log("Exercícios \n Retorna o menor valor");
+
+function min(n1, n2) {
+    return Math.min(n1, n2);
+}
+console.log(min(10, 2));
+
+console.log("\n Retorna o maior valor");
+
+function max(n1, n2) {
+    return Math.max(n1, n2);
+}
+console.log(max(0, -10));
+
+console.log("Recursão para definir se valor passado e par ou impar");
+
+function isEven(valor) {
+    function even(valor) {
+        if (valor == 0) {
+            return true;
+        } else if (valor == 1) {
+            return false;
+        } else {
+            return even(valor = valor - 2);
+        }
+    }
+    return even(valor);
+}
+
+console.log(isEven(50));
+console.log(isEven(75));
+// console.log(isEven(-1));
+
+console.log("CountBs 'B' from string");
+
+function countBs(string) {
+    var count = 0;
+    for (var i = 0; i < string.length; i++) {
+        if (string.charAt(i) === "B") {
+            count++;
+        }
+    }
+    return count;
+}
+console.log(countBs("BBC"));
+
+function countChart(string, char) {
+    var count = 0;
+    for (var i = 0; i < string.length; i++) {
+        if (string.charAt(i) === char) {
+            count++;
+        }
+    }
+    return count;
+}
+
+console.log(countChart("kakkerlak", "k"));
