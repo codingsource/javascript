@@ -250,3 +250,158 @@ var journal = [{
         squirrel: true
     }
 ];
+
+console.log("MUTABILIDADE");
+
+var object1 = {
+    value: 10
+};
+var object2 = object1;
+var object3 = {
+    value: 10
+};
+
+console.log(object1 == object2);
+console.log(object1 == object3);
+
+object1.value = 15;
+console.log(object2.value);
+console.log(object3.value);
+
+var journal = [];
+
+function addEntry(events, didTurnIntoASquirrel) {
+    journal.push({
+        events: events,
+        squirrel: didTurnIntoASquirrel
+    });
+}
+
+addEntry(["work", "thouched tree", "pizza", "running", "television"], false);
+addEntry(["work", "ice cream", "cauliflower", "lasanga", "touched tree", " brushed teeth", false]);
+addEntry(["weekend", "cycling", "break", "peanuts", "beer", true]);
+
+var JOURNAL = require("./04_data.js");
+
+function phi(table) {
+    return (table[3] * table[0] - table[2] * table[1]) /
+      Math.sqrt((table[2] + table[3]) *
+                (table[0] + table[1]) *
+                (table[1] + table[3]) *
+                (table[0] + table[2]));
+}
+console.log(phi([76, 9, 4, 1]));
+
+function hasEvent(event, entry) {
+    return entry.events.indexOf(event) != -1;
+}
+
+function tableFor(event, journal) {
+    var table = [0, 0, 0, 0];
+    for (var i = 0; i < journal.length; i++) {
+        var entry = journal[i],
+            index = 0;
+        if (hasEvent(event, entry)) index += 1;
+        if (entry.squirrel) index += 2;
+        table[index] += 1;
+    }
+    return table;
+}
+console.log("Aqui");
+console.log(tableFor("pizza", JOURNAL));
+
+var map = {};
+
+function storePhi(event, phi) {
+    map[event] = phi;
+}
+storePhi("pizza", 0.069);
+storePhi("touched tree", -0.081);
+console.log("pizza" in map);
+console.log("touched tree");
+
+for (var event in map)
+    console.log("The correlation for '" + event + "' is " + map[event]);
+
+function gatherCorrelations(journal) {
+    var phis = {};
+    for (var entry = 0; entry < journal.length; entry++) {
+        var events = journal[entry].events;
+        for (var i = 0; i < events.length; i++) {
+            var event = events[i];
+            if (!(event in phis)) {
+                phis[event] = phi(tableFor(event, journal));
+            }
+        }
+    }
+    return phis;
+}
+
+var correlations = gatherCorrelations(JOURNAL);
+console.log(correlations.pizza);
+
+for (var event in correlations)
+    console.log(event + ": " + correlations[event]);
+
+console.log("");
+
+for (var event in correlations) {
+    var correlation = correlations[event];
+    if (correlation > 0.1 || correlation < -0.1)
+        console.log(event + ": " + correlation);
+}
+
+console.log("");
+
+for (var i = 0; i < JOURNAL.length; i++) {
+    var entry = JOURNAL[i];
+    if (hasEvent("peanuts", entry) && !hasEvent("brushed teeth", entry))
+        entry.events.push("peanut teeth");
+}
+
+console.log(phi(tableFor("peanut teeth", JOURNAL)));
+console.log("");
+
+var todoList = [];
+function rememberTo(task) {
+    todoList.push(task);
+}
+function whatIsNext() {
+    return todoList.shift();
+}
+function urgentlyRememberTo(task) {
+    todoList.unshift(task);
+}
+
+rememberTo("eat");
+
+console.log([1, 2, 3, 2, 1].indexOf(2));
+console.log([1, 2, 3, 2, 1].lastIndexOf(2));
+
+console.log("");
+
+console.log([0, 1, 2, 3, 4].slice(2, 4));
+console.log([0, 1, 2, 3, 4].slice(2));
+
+function remove(array, index) {
+    return array.slice(0, index)
+        .concat(array.slice(index + 1));
+}
+
+console.log(remove(["a", "b", "c", "d", "e"], 2));
+
+var myString = "Fibo";
+myString.myProperty = "value";
+console.log(myString.myProperty);
+
+console.log("coconuts".slice(4, 7));
+console.log("coconut".indexOf("u"));
+console.log("one two three".indexOf("ee"));
+console.log(" okay \n ".trim());
+console.log("");
+
+var string = "abc";
+console.log(string.charAt(0));
+console.log(string[1]);
+
+console.log("");
