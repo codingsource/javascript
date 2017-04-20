@@ -270,12 +270,14 @@ console.log(object3.value);
 
 var journal = [];
 
-function addEntry(events, didTurnIntoASquirrel) {
-    journal.push({
-        events: events,
-        squirrel: didTurnIntoASquirrel
-    });
+function addEntry(squirrel) {
+    var entry = {events: [], squirrel: squirrel};
+    for (var i = 0; i < arguments.length; i++)
+        entry.events.push(arguments[i]);
+    journal.push(entry);
 }
+
+addEntry(true, "work", "thouched tree", "pizza", "running", "television");
 
 addEntry(["work", "thouched tree", "pizza", "running", "television"], false);
 addEntry(["work", "ice cream", "cauliflower", "lasanga", "touched tree", " brushed teeth", false]);
@@ -405,3 +407,14 @@ console.log(string.charAt(0));
 console.log(string[1]);
 
 console.log("");
+console.log("O Objeto Arguments");
+
+function noArguments() {}
+noArguments(1, 2, 3);
+function threeArguments(a, b, c) {}
+threeArguments();
+
+function argumentCunter() {
+    console.log("You gave me", arguments.length, "arguments.");
+}
+argumentCunter("Straw man", "Tautology", "Ad hominem");
