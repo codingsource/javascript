@@ -438,3 +438,23 @@ console.log(Math.random());
 console.log(Math.floor(Math.random() * 10));
 console.log(Math.ceil(Math.random() * 10));
 console.log(Math.round(Math.random() * 10));
+
+
+console.log("Some de um intervalo");
+console.log(sum(range(1, 10)));
+
+function range(start, end) {
+    var arrayNumber = [];
+    for (var i = start; i <= end; i++) {
+        arrayNumber[i] = i;
+    }
+    return arrayNumber;
+}
+
+function sum(arrayNumber) {
+    var result = 0;
+    for (var i = 0; i < arrayNumber.length; i++) {
+        result += i; 
+    }
+    return result;
+}
