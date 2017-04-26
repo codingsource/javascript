@@ -271,7 +271,10 @@ console.log(object3.value);
 var journal = [];
 
 function addEntry(squirrel) {
-    var entry = {events: [], squirrel: squirrel};
+    var entry = {
+        events: [],
+        squirrel: squirrel
+    };
     for (var i = 0; i < arguments.length; i++)
         entry.events.push(arguments[i]);
     journal.push(entry);
@@ -287,10 +290,10 @@ var JOURNAL = require("./04_data.js");
 
 function phi(table) {
     return (table[3] * table[0] - table[2] * table[1]) /
-      Math.sqrt((table[2] + table[3]) *
-                (table[0] + table[1]) *
-                (table[1] + table[3]) *
-                (table[0] + table[2]));
+        Math.sqrt((table[2] + table[3]) *
+            (table[0] + table[1]) *
+            (table[1] + table[3]) *
+            (table[0] + table[2]));
 }
 console.log(phi([76, 9, 4, 1]));
 
@@ -365,12 +368,15 @@ console.log(phi(tableFor("peanut teeth", JOURNAL)));
 console.log("");
 
 var todoList = [];
+
 function rememberTo(task) {
     todoList.push(task);
 }
+
 function whatIsNext() {
     return todoList.shift();
 }
+
 function urgentlyRememberTo(task) {
     todoList.unshift(task);
 }
@@ -411,6 +417,7 @@ console.log("O Objeto Arguments");
 
 function noArguments() {}
 noArguments(1, 2, 3);
+
 function threeArguments(a, b, c) {}
 threeArguments();
 
@@ -424,8 +431,10 @@ console.log("O Objeto Math");
 
 function randomPointOnCircle(radius) {
     var angle = Math.random() * 2 * Math.PI;
-    return {x: radius * Math.cos(angle),
-            y: radius * Math.sin(angle)};
+    return {
+        x: radius * Math.cos(angle),
+        y: radius * Math.sin(angle)
+    };
 }
 
 console.log(randomPointOnCircle(2));
@@ -442,11 +451,22 @@ console.log(Math.round(Math.random() * 10));
 
 console.log("Some de um intervalo");
 console.log(sum(range(1, 10)));
+// console.log(sum(range(1, 10, 2)));
+console.log(range(1, 10, 2));
+console.log(range(5, 2, -1));
+console.log(range(5, 2));
 
-function range(start, end) {
+function range(start, end, lengthIncrement) {
     var arrayNumber = [];
-    for (var i = start; i <= end; i++) {
-        arrayNumber[i] = i;
+    lengthIncrement == undefined ? lengthIncrement = 1 : lengthIncrement = lengthIncrement
+    if (lengthIncrement > 0) {
+        for (var i = start; i <= end; i+=lengthIncrement) {
+            arrayNumber.push(i);
+        }
+        return arrayNumber;
+    }
+    for (var i = start; i >= end; i--) {
+        arrayNumber.push(i);
     }
     return arrayNumber;
 }
@@ -454,7 +474,21 @@ function range(start, end) {
 function sum(arrayNumber) {
     var result = 0;
     for (var i = 0; i < arrayNumber.length; i++) {
-        result += i; 
+        result += arrayNumber[i];
     }
     return result;
+}
+
+console.log("Invertendo um Array");
+console.log(reverseArray(["A", "B", "C"]));
+function reverseArray(array) {
+    var arrayInverse = [];
+    // for (var i = array.length -1; i >= 0; i--) {
+    //     arrayInverse.push(array[i]);
+    // }
+
+    for (var i = 0; i < array.length; i++) {
+        arrayInverse.unshift(array[i]);        
+    }
+    return arrayInverse;
 }
