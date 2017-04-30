@@ -460,7 +460,7 @@ function range(start, end, lengthIncrement) {
     var arrayNumber = [];
     lengthIncrement == undefined ? lengthIncrement = 1 : lengthIncrement = lengthIncrement
     if (lengthIncrement > 0) {
-        for (var i = start; i <= end; i+=lengthIncrement) {
+        for (var i = start; i <= end; i += lengthIncrement) {
             arrayNumber.push(i);
         }
         return arrayNumber;
@@ -478,9 +478,11 @@ function sum(arrayNumber) {
     }
     return result;
 }
+console.log("");
 
 console.log("Invertendo um Array");
 console.log(reverseArray(["A", "B", "C"]));
+
 function reverseArray(array) {
     var arrayInverse = [];
     // for (var i = array.length -1; i >= 0; i--) {
@@ -488,7 +490,62 @@ function reverseArray(array) {
     // }
 
     for (var i = 0; i < array.length; i++) {
-        arrayInverse.unshift(array[i]);        
+        arrayInverse.unshift(array[i]);
     }
     return arrayInverse;
+}
+
+
+var arrayValue = [1, 2, 3, 4, 5];
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
+
+function reverseArrayInPlace(array) {
+    var i, elemnt
+    for (i = 0; i < Math.floor(array.length); i++) {
+        element = array[i];
+        array[i] = array.length - i;
+    }
+    return array;
+}
+
+console.log("");
+console.log("Lista");
+
+// console.log(arrayToList([1, 2, 3]));
+// console.log(arrayToList([10, 20]));
+console.log(listToArray(arrayToList([10, 20, 30])));
+// console.log(prepend(10, prepend(20, null)));
+// console.log(nth(arrayToList([10, 20, 30]), 1));
+
+var list = {
+    value: 1,
+    rest: {
+        value: 2,
+        rest: {
+            value: 3,
+            rest: null
+        }
+    }
+};
+
+
+function arrayToList(array) {
+    var list;
+    for (var i = array.length - 1; i >= 0; i--) {
+        list = {
+            value: array[i],
+            rest: list
+        }
+    }
+
+    return list;
+}
+
+function listToArray(list) {
+    var array = [];
+    for (var node = list; node; node = node.rest) {
+        array.push(node.value);
+    }
+    return array;
 }
