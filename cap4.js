@@ -514,20 +514,20 @@ console.log("Lista");
 
 // console.log(arrayToList([1, 2, 3]));
 // console.log(arrayToList([10, 20]));
-console.log(listToArray(arrayToList([10, 20, 30])));
-// console.log(prepend(10, prepend(20, null)));
+// console.log(listToArray(arrayToList([10, 20, 30])));
+console.log(prepend(10, prepend(20, null)));
 // console.log(nth(arrayToList([10, 20, 30]), 1));
 
-var list = {
-    value: 1,
-    rest: {
-        value: 2,
-        rest: {
-            value: 3,
-            rest: null
-        }
-    }
-};
+// var list = {
+//     value: 1,
+//     rest: {
+//         value: 2,
+//         rest: {
+//             value: 3,
+//             rest: null
+//         }
+//     }
+// };
 
 
 function arrayToList(array) {
@@ -538,7 +538,6 @@ function arrayToList(array) {
             rest: list
         }
     }
-
     return list;
 }
 
@@ -548,4 +547,21 @@ function listToArray(list) {
         array.push(node.value);
     }
     return array;
+}
+
+function prepend(number, list) {
+    var list = {
+        value: number,
+        rest: list
+    }
+    return list;
+}
+
+function nth(list, position) {
+    var count = 0;
+    for (var node = list; node; node = node.rest) {
+        if (count == position)
+            return node.value;
+        count++;
+    }
 }
