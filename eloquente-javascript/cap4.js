@@ -3,6 +3,7 @@
  * Funções
  */
 
+
 // 1 Parameter
 var square = function (x) {
     return x * x;
