@@ -40,15 +40,21 @@ var string = JSON.stringify({name: "X", born: 1980});
 console.log(string);
 console.log(JSON.parse(string).born);
 
-// var scripts = JSON.stringify(SCRIPTS);
+var scripts = JSON.stringify(SCRIPTS);
+var scpts = JSON.parse(scripts);
 var ancestry = JSON.parse(ANCESTRY_FILE);
 
-// logEach(ancestry);
+logEach(scpts);
 
 console.log("");
 console.log(ancestry.length);
 
 console.log("");
+
+/* Para encontrar as pessoas no conjunto de dados
+ dos ancestrais que eram jovens em 1924, a seguinte 
+ função pode ser útil. Ele filtra os elementos em 
+ uma matriz que não passa pelo teste. */
 
 function filter(array, test){
     var passed = [];
@@ -59,7 +65,30 @@ function filter(array, test){
     }
     return passed;
 }
-
+/**
+* Este utiliza um argumento chamado de test,
+* com um valor de função, para preencher uma 
+* lacuna na computação. A função test é chamada 
+* para cada elemento, e o seu valor de retorno 
+* determina se um elemento é incluído no array 
+* retornado.
+*/
 console.log(filter(ancestry, function(person) {
     return person.born > 1900 && person.born < 1925;
 }));
+
+/**
+ * Assim como forEach, 
+ * filter é um método 
+ * padrão de arrays. 
+ * O exemplo define uma 
+ * função só para mostrar o 
+ * que ela faz internamente. 
+ * A partir de agora vamos usá-lo assim:
+*/
+console.log("___");
+console.log(ancestry.filter(function(person) {
+    return person.father == "Carel Haverbeke";
+}));
+
+console.log("");
