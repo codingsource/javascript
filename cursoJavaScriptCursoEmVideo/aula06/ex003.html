@@ -24,10 +24,25 @@
     <h1>Olá, Mundo!</h1>
     <p>Já me livrei da maldição.</p>
     <script>
-        var n1 = Number.parseInt(window.prompt('Digite um número: '))
-        var n2 = Number.parseInt(window.prompt('Digite outro número: '))
+        // Number.parseInt ou parseFloat
+        var n1 = Number(window.prompt('Digite um número: '))
+        var n2 = Number(window.prompt('Digite outro número: '))
         var s = n1 + n2
-        window.alert('A soma dos valores é ' + s)
+        //window.alert('A soma dos valores é ' + s)
+        window.alert(`A soma entre ${n1} e ${n2} é igual a ${s}`)
+        // string(s) ou s.toString()
+
+        /*
+        peter@peter:~$ node
+        > var s = 'javaScript'
+        undefined
+        > 'Eu estou aprendendo s' // nao faz irtepolação
+        'Eu estou aprendendo s'   
+        > 'Eu estou aprendendo ' + s // usa concatenação
+        'Eu estou aprendendo javaScript'
+        > `Eu estou aprendendo ${s}` // usa template string
+        'Eu estou aprendendo javaScript'      
+        */
     </script>
 </body>
 
